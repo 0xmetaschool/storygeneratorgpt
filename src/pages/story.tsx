@@ -25,10 +25,9 @@ const StoryPage: NextPage = () => {
   };
 
   return (
-    <div className="min-h-screen relative bg-black">
-      <Navbar />
+    <div className="min-h-screen flex flex-col relative">
       {/* Background Image */}
-      <div className="absolute inset-0">
+      <div className="fixed inset-0">
         <Image
           src="/bg_3.jpg"
           alt="Background"
@@ -41,9 +40,9 @@ const StoryPage: NextPage = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex-grow">
         <Navbar />
-        <main className="container mx-auto px-4 py-8 pt-28">
+        <main className="container mx-auto px-4 py-8 pt-28 mb-24">
           <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-8 border border-white/20">
             <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">
               Your Story
@@ -84,7 +83,9 @@ const StoryPage: NextPage = () => {
           </div>
         </main>
       </div>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 };

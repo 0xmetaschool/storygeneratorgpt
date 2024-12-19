@@ -8,14 +8,18 @@ const GeneratePage: NextPage = () => {
   return (
     <div className="min-h-screen relative">
       {/* Background Image */}
-      <Image
-        src="/images/bg_2.jpg"
-        alt="Background"
-        fill
-        className="object-cover fixed inset-0 -z-10"
-        priority
-      />
-      <div className="absolute inset-0 bg-black/50 -z-10" /> {/* Dark overlay */}
+      <div className="fixed inset-0 w-full h-full">
+        <Image
+          src="/bg_3.jpg"
+          alt="Background"
+          width={1920}
+          height={1080}
+          className="object-cover w-full h-full"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/50" /> {/* Dark overlay */}
+      </div>
       {/* Content */}
       <div className="relative z-10">
         <Navbar />
