@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const GeneratePage: NextPage = () => {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen flex flex-col">
       {/* Background Image */}
       <div className="fixed inset-0 w-full h-full">
         <Image
@@ -21,9 +21,9 @@ const GeneratePage: NextPage = () => {
         <div className="absolute inset-0 bg-black/50" /> {/* Dark overlay */}
       </div>
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col flex-grow">
         <Navbar />
-        <main className="container mx-auto px-4 py-8 pt-28">
+        <main className="container mx-auto px-4 py-8 pt-28 flex-grow">
           <div className="max-w-4xl mx-auto">
             <StoryGenerator />
           </div>

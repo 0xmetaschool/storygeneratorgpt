@@ -12,7 +12,9 @@ const Navbar = () => {
   ];
 
   const handleNavClick = (path: string) => {
-    if (path.startsWith('/#')) {
+    if (path === '/#about' && router.pathname !== '/') {
+      router.push('/?scrollTo=about');
+    } else if (path.startsWith('/#')) {
       const element = document.querySelector(path.replace('/', ''));
       element?.scrollIntoView({ behavior: 'smooth' });
     } else {
@@ -47,26 +49,12 @@ const Navbar = () => {
                 className="relative group"
                 onClick={() => handleNavClick(item.path)}
               >
-                <span className="text-gray-600 hover:text-gray-900 cursor-pointer 
-                               transition-colors duration-200 text-sm font-medium">
+                <span className={`cursor-pointer transition-colors duration-200 text-sm font-medium
+                  ${router.pathname === item.path ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}>
                   {item.name}
                 </span>
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100
-                           transition-transform duration-200 origin-left"
-                />
               </motion.div>
             ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => router.push('/generate')}
-              className="px-5 py-2 bg-[#2C3440] text-white text-sm font-semibold 
-                       rounded-full hover:bg-[#3A4553] transition-all duration-300 
-                       shadow-sm border border-[#4A5568]"
-            >
-              Get Started
-            </motion.button>
           </div>
         </div>
       </div>

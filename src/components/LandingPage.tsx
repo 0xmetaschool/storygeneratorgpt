@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -8,23 +9,35 @@ import ImageReel from './ImageReel';
 const LandingPage = () => {
   const router = useRouter();
 
+  useEffect(() => {
+    // Handle scroll to section if coming from another page
+    if (router.query.scrollTo === 'about') {
+      const element = document.querySelector('#about');
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [router.query.scrollTo]);
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Navigation */}
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center min-h-[calc(100vh-4rem)] px-8">
+      <section className="flex-grow flex flex-col justify-center relative">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-14">
             {/* Left Column */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center space-y-6 md:-mt-16">
+            <div className="w-full md:w-1/2 flex flex-col justify-center space-y-7">
               <div className="space-y-5">
                 <motion.h1 
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="text-6xl font-bold text-gray-900 leading-tight tracking-tight"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight"
                 >
                   Free Online<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
@@ -36,7 +49,7 @@ const LandingPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-xl text-gray-600 leading-relaxed max-w-xl"
+                  className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-xl"
                 >
                   Transform your imagination into captivating stories. Simply describe your idea, 
                   and watch as AI brings your narrative to life with rich details and engaging plots.
@@ -47,7 +60,7 @@ const LandingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex items-center space-x-4 pt-2"
+                className="flex items-center space-x-4"
               >
                 <motion.button
                   onClick={() => router.push('/generate')}
@@ -63,7 +76,7 @@ const LandingPage = () => {
             </div>
 
             {/* Right Column - Image Reel */}
-            <div className="w-full md:w-1/2 md:h-[90vh] sticky top-0 flex items-center">
+            <div className="w-full md:w-1/2 md:h-[80vh] sticky top-0 flex items-center">
               <ImageReel />
             </div>
           </div>
@@ -71,9 +84,9 @@ const LandingPage = () => {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="relative bg-gray-50 py-24 scroll-mt-16">
+      <section id="about" className="relative bg-gray-50 py-20 scroll-mt-14">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row items-center gap-16">
+          <div className="flex flex-col md:flex-row items-center gap-14">
             {/* Image Column */}
             <div className="w-full md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
@@ -95,12 +108,12 @@ const LandingPage = () => {
             </div>
 
             {/* Content Column */}
-            <div className="w-full md:w-1/2 space-y-6">
+            <div className="w-full md:w-1/2 space-y-5">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
+                className="space-y-5"
               >
                 <h2 className="text-4xl font-bold text-gray-900">
                   Crafting Stories with 
@@ -117,7 +130,7 @@ const LandingPage = () => {
                   ideas to life.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4">
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -170,13 +183,13 @@ const LandingPage = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative bg-white py-20">
+      <section id="how-it-works" className="relative bg-white py-18">
         <div className="max-w-7xl mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-14"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               How It 
@@ -189,7 +202,7 @@ const LandingPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {/* Step 1 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -255,7 +268,7 @@ const LandingPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-center mt-12"
+            className="text-center mt-10"
           >
             <motion.button
               onClick={() => router.push('/generate')}
@@ -271,7 +284,9 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Add spacing div */}
+      <div className="h-24"></div>
+
       <Footer />
     </div>
   );
