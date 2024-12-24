@@ -100,6 +100,7 @@ export default function StoryGenerator() {
         pathname: '/story',
         query: { 
           story: data.story,
+          title: data.title,
           formData: JSON.stringify(formData)
         }
       });

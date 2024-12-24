@@ -9,11 +9,16 @@ import Footer from '../components/Footer';
 const StoryPage: NextPage = () => {
   const router = useRouter();
   const [story, setStory] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
     const storyFromState = router.query.story as string;
+    const titleFromState = router.query.title as string;
     if (storyFromState) {
       setStory(storyFromState);
+    }
+    if (titleFromState) {
+      setTitle(titleFromState);
     }
   }, [router.query]);
 
@@ -44,9 +49,12 @@ const StoryPage: NextPage = () => {
         <Navbar />
         <main className="container mx-auto px-4 py-8 pt-28 mb-24">
           <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-8 border border-white/20">
-            <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">
-              Your Story
-            </h1>
+            {title && (
+              <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">
+                {title}
+              </h1>
+            )}
+           
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
